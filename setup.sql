@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `ADDRESSES`(
     `CustomerID` int not null,
     PRIMARY KEY (`id`),
     constraint foreign key (CustomerID) references CUSTOMERS(id),
-    constraint foreign key (country) references COUNTRIES(id)
+    constraint foreign key (country) references Ecommerce.COUNTRIES(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `ORDER HEADER`(
     `updated_at` timestamp default current_timestamp on update current_timestamp,
     `Last OPRID` int(11) not null,
     PRIMARY KEY (`id`),
-    constraint foreign key (`Last OPRID`) references EMPLOYEES(id),
+    constraint foreign key (`Last OPRID`) references Ecommerce.EMPLOYEES(id),
     constraint foreign key (`Sold To`) references CUSTOMERS(id),
     constraint foreign key (`Ship To`) references CUSTOMERS(id),
     constraint foreign key (`Bill To`) references CUSTOMERS(id)
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `ORDER LINE`
     `Last OPRID`   int(11)                                                  not null,
     PRIMARY KEY (`id`),
     constraint foreign key (order_header) references `ORDER HEADER` (id),
-    constraint foreign key (`Last OPRID`) references EMPLOYEES (id)
+    constraint foreign key (`Last OPRID`) references Ecommerce.EMPLOYEES (id)
 );
 
 CREATE TABLE IF NOT EXISTS `ORDER SCHEDULE`(
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `ORDER SCHEDULE`(
     `invoice_id` int(11) not null,
     PRIMARY KEY (`id`),
     constraint foreign key (order_line) references `ORDER LINE`(id),
-    constraint foreign key (`Last OPRID`) references EMPLOYEES(id)
+    constraint foreign key (`Last OPRID`) references Ecommerce.EMPLOYEES(id)
  );
 
 
